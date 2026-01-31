@@ -1,6 +1,5 @@
 package com.lavkush.TrackMyRail.service;
 
-
 import com.lavkush.TrackMyRail.entity.Train;
 import com.lavkush.TrackMyRail.repo.TrainRepository;
 import org.springframework.stereotype.Service;
@@ -10,18 +9,17 @@ import java.util.List;
 @Service
 public class TrainService {
 
-    private TrainRepository trainRepository;
+    private final TrainRepository trainRepository;
 
     public TrainService(TrainRepository trainRepository) {
         this.trainRepository = trainRepository;
     }
 
     public List<Train> getAllTrains() {
-
-        return  trainRepository.findAll();
+        return trainRepository.findAll();
     }
 
-    public  Train addTrain(Train train) {
-        return   trainRepository.save(train);
+    public Train addTrain(Train train) {
+        return trainRepository.save(train);
     }
 }

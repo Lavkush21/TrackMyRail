@@ -1,6 +1,5 @@
 package com.lavkush.TrackMyRail.controller;
 
-
 import com.lavkush.TrackMyRail.entity.Train;
 import com.lavkush.TrackMyRail.service.TrainService;
 import org.springframework.web.bind.annotation.*;
@@ -11,20 +10,19 @@ import java.util.List;
 @RequestMapping("/trains")
 public class TrainController {
 
+    private final TrainService trainService;
 
-     private  TrainService trainService;
-   public TrainController(TrainService trainService) {
+    public TrainController(TrainService trainService) {
         this.trainService = trainService;
     }
 
     @GetMapping
     public List<Train> getAllTrains() {
-
-        return  trainService.getAllTrains();
+        return trainService.getAllTrains();
     }
 
     @PostMapping
     public Train addTrain(@RequestBody Train train) {
-        return  trainService.addTrain(train);
+        return trainService.addTrain(train);
     }
 }
