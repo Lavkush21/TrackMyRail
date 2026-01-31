@@ -1,6 +1,6 @@
 package com.lavkush.TrackMyRail.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -8,53 +8,48 @@ import java.util.List;
 @Entity
 public class Train {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String trainName;
-
     private String trainNumber;
-
-
-    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<TrainSchedule> scheduleList;
 
-    public Long getId() {
-        return id;
-    }
+    public Train() {}
 
-    public String getTrainName() {
-        return trainName;
-    }
-
-    public void setTrainName(String trainName) {
+    public Train(Long id, String trainName, String trainNumber, List<TrainSchedule> scheduleList) {
+        this.id = id;
         this.trainName = trainName;
-    }
-
-    public List<TrainSchedule> getScheduleList() {
-        return scheduleList;
-    }
-
-    public void setScheduleList(List<TrainSchedule> scheduleList) {
+        this.trainNumber = trainNumber;
         this.scheduleList = scheduleList;
     }
 
-    public String getTrainNumber() {
-        return trainNumber;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
-
-    public void setTrainNumber(String trainNumber) {
-        this.trainNumber = trainNumber;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
-
-    public  Train() {
-
+    public String getTrainName() {
+        return trainName;
     }
-
+    public void setTrainName(String trainName) {
+        this.trainName = trainName;
+    }
+    public String getTrainNumber() {
+        return trainNumber;
+    }
+    public void setTrainNumber(String trainNumber) {
+        this.trainNumber = trainNumber;
+    }
+    public List<TrainSchedule> getScheduleList() {
+        return scheduleList;
+    }
+    public void setScheduleList(List<TrainSchedule> scheduleList) {
+        this.scheduleList = scheduleList;
+    }
 }
