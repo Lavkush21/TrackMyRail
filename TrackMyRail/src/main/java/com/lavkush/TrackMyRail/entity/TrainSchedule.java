@@ -37,6 +37,12 @@ public class TrainSchedule {
         this.arrivalTime = arrivalTime;
     }
 
+    public TrainSchedule(Long id, Train varanasi, Station delhi, Train varanasi1, String time, String time1) {
+    }
+
+    public TrainSchedule(Long o, Station varanasi, Station delhi, Station varanasi1, String time, String time1) {
+    }
+
     // Getters and Setters
     public Long getId() {
 

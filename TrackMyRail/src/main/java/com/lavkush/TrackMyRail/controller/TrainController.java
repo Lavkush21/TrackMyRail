@@ -2,12 +2,14 @@ package com.lavkush.TrackMyRail.controller;
 
 import com.lavkush.TrackMyRail.entity.Train;
 import com.lavkush.TrackMyRail.service.TrainService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/trains")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TrainController {
 
     private final TrainService trainService;
@@ -22,7 +24,8 @@ public class TrainController {
     }
 
     @PostMapping
-    public Train addTrain(@RequestBody Train train) {
-        return trainService.addTrain(train);
+    public ResponseEntity<Train> addTrain(@RequestBody Train train) {
+        Train savedTrain = trainService.addTrain(train);
+        return ResponseEntity.ok(savedTrain);
     }
 }
